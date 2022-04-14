@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from setuptools import setup
 
-PLUGIN_ENTRY_POINT = 'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPStreamServerSTT'
+PLUGIN_ENTRY_POINT = 'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT'
 setup(
     name='ovos-stt-plugin-server',
     version='0.0.1',
