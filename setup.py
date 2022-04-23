@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 from setuptools import setup
 
-PLUGIN_ENTRY_POINT = 'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT'
+
+PLUGIN_ENTRY_POINT = (
+    'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT',
+    'ovos-stt-plugin-server-streaming = ovos_stt_plugin_server:OVOSHTTPStreamServerSTT'
+)
+
 setup(
     name='ovos-stt-plugin-server',
-    version='0.0.1',
+    version='0.0.2a1',
     description='ovos stt server plugin for mycroft',
     url='https://github.com/OpenVoiceOS/ovos-stt-server-plugin',
     author='JarbasAi',
