@@ -1,8 +1,8 @@
-from queue import Queue
-from uuid import uuid4
 import requests
 from ovos_plugin_manager.stt import STT
 from ovos_plugin_manager.stt import StreamingSTT, StreamThread
+from queue import Queue
+from uuid import uuid4
 
 
 class OVOSHTTPServerSTT(STT):
@@ -29,8 +29,8 @@ class OVOSHTTPStreamServerStreamThread(StreamThread):
         self.session_id = session_id or str(uuid4())
         # reset the model for this session
         response = self.session.post(f"{self.url}/start",
-                          params={"lang": self.language,
-                                  "uuid": self.session_id})
+                                     params={"lang": self.language,
+                                             "uuid": self.session_id})
 
     def handle_audio_stream(self, audio, language):
         lang = language or self.language
@@ -65,11 +65,18 @@ class OVOSHTTPStreamServerSTT(StreamingSTT):
         return stream
 
 
+OVOSHTTPServerSTTConfig = {"en-us": []}
 
-# will list the public instances of google STT proxies as valid configs
-# but thats not the main intended usage of this plugin
+# jarbas public demo instances
+jarbas_hosted = {
+    "S.A.M.": ("https://sam.jarbasai.online", "male"),
+    "PicoTTS": ("https://pico.jarbasai.online", "female"),
+    "Glados": ("https://glados.jarbasai.online", "female"),
+    "Alan Pope [Mimic 1]": ("https://mimic.jarbasai.online", "male"),
+    "R2D2": ("https://r2d2.jarbasai.online", "neutral")
+}
 
-
+# public instances of google STT proxies as valid configs
 # taken from https://stackoverflow.com/questions/14257598/what-are-language-codes-in-chromes-implementation-of-the-html5-speech-recogniti/14302134#14302134
 _lang = {
     "Afrikaans": [
@@ -251,7 +258,6 @@ _lang = {
     ]
 }
 
-OVOSHTTPServerSTTConfig = {}
 
 for lang, data in _lang.items():
     for region, code in data:
@@ -265,3 +271,13 @@ for lang, data in _lang.items():
              "display_name": f"Strongthany Google Proxy {lang} ({region})",
              "offline": False}
         ]
+
+
+OVOSHTTPServerSTTConfig["en-us"] += [
+    {"lang": "en-us",
+     "url": url,
+     "gender": gender,
+     "display_name": f"{display_name} (jarbasai.online)",
+     "offline": False}
+    for display_name, (url, gender) in jarbas_hosted.items()
+]
