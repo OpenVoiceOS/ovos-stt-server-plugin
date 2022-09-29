@@ -6,6 +6,8 @@ PLUGIN_ENTRY_POINT = (
     'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT',
     'ovos-stt-plugin-server-streaming = ovos_stt_plugin_server:OVOSHTTPStreamServerSTT'
 )
+CONFIG_ENTRY_POINT = 'ovos-stt-plugin-server.config = ovos_stt_plugin_server:OVOSHTTPServerSTTConfig'
+
 
 setup(
     name='ovos-stt-plugin-server',
@@ -37,5 +39,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     keywords='mycroft OpenVoiceOS OVOS plugin stt',
-    entry_points={'mycroft.plugin.stt': PLUGIN_ENTRY_POINT}
+    entry_points={'mycroft.plugin.stt': PLUGIN_ENTRY_POINT,
+                  'mycroft.plugin.stt.config': CONFIG_ENTRY_POINT}
 )
