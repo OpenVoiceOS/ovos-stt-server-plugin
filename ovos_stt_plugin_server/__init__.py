@@ -258,10 +258,12 @@ for lang, data in _lang.items():
         OVOSHTTPServerSTTConfig[code] = [
             {"lang": code,
              "url": "https://stt.openvoiceos.com",
+             "priority": 30,
              "display_name": f"OVOS Google Proxy {lang} ({region})",
              "offline": False},
             {"lang": code,
              "url": "https://stt.strongthany.cc",
+             "priority": 80,
              "display_name": f"Strongthany Google Proxy {lang} ({region})",
              "offline": False}
         ]
