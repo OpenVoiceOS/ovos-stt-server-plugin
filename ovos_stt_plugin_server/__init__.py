@@ -1,5 +1,6 @@
 from queue import Queue
 from uuid import uuid4
+
 import requests
 from ovos_plugin_manager.stt import STT
 from ovos_plugin_manager.stt import StreamingSTT, StreamThread
@@ -29,8 +30,8 @@ class OVOSHTTPStreamServerStreamThread(StreamThread):
         self.session_id = session_id or str(uuid4())
         # reset the model for this session
         response = self.session.post(f"{self.url}/start",
-                          params={"lang": self.language,
-                                  "uuid": self.session_id})
+                                     params={"lang": self.language,
+                                             "uuid": self.session_id})
 
     def handle_audio_stream(self, audio, language):
         lang = language or self.language
@@ -63,7 +64,6 @@ class OVOSHTTPStreamServerSTT(StreamingSTT):
         stream = OVOSHTTPStreamServerStreamThread(self.queue, self.lang, url)
         stream.reset_model()
         return stream
-
 
 
 # will list the public instances of google STT proxies as valid configs
@@ -258,12 +258,16 @@ for lang, data in _lang.items():
         OVOSHTTPServerSTTConfig[code] = [
             {"lang": code,
              "url": "https://stt.openvoiceos.com",
-             "priority": 30,
-             "display_name": f"OVOS Google Proxy {lang} ({region})",
-             "offline": False},
+             "meta": {
+                 "priority": 30,
+                 "display_name": f"OVOS Google Proxy {lang} ({region})",
+                 "offline": False}
+             },
             {"lang": code,
              "url": "https://stt.strongthany.cc",
-             "priority": 80,
-             "display_name": f"Strongthany Google Proxy {lang} ({region})",
-             "offline": False}
+             "meta": {
+                 "priority": 80,
+                 "display_name": f"Strongthany Google Proxy {lang} ({region})",
+                 "offline": False}
+             }
         ]
