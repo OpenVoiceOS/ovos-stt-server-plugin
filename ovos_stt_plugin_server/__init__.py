@@ -16,7 +16,7 @@ class OVOSHTTPServerSTT(STT):
     def execute(self, audio, language=None):
         self.response = requests.post(self.url, data=audio.get_wav_data(),
                                       headers={"Content-Type": "audio/wav"},
-                                      params={"session_id": language or self.lang})
+                                      params={"lang": language or self.lang})
         return self.response.text if self.response else None
 
 
