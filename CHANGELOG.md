@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
+## [V0.0.3a2](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.3a2) (2023-05-04)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/028fed89ef13dee47f29e421a814a9742723b01f...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/028fed89ef13dee47f29e421a814a9742723b01f...V0.0.3a2)
 
 **Implemented enhancements:**
 
