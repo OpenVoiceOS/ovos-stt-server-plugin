@@ -9,7 +9,8 @@ from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
     public_servers = [
-        "https://stt.openvoiceos.org/stt"
+        "https://stt.openvoiceos.org/stt",
+        "https://fasterwhisper.ziggyai.online/stt"
     ]
 
     def __init__(self, config=None):
