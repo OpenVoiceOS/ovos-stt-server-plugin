@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a1...HEAD)
+
+**Implemented enhancements:**
+
+- added ziggyai public server [\#9](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/9) ([builderjer](https://github.com/builderjer))
+
+## [V0.0.4a1](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a1) (2023-05-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.3...V0.0.4a1)
 
 **Implemented enhancements:**
 
