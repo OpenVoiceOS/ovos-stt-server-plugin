@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a2...HEAD)
+
+**Closed issues:**
+
+- first default server is down [\#10](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/issues/10)
+
+**Merged pull requests:**
+
+- Add Smart'Gic STT public server [\#11](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/11) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.4a2](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a2) (2023-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a1...V0.0.4a2)
 
 **Implemented enhancements:**
 
