@@ -10,7 +10,8 @@ class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
     public_servers = [
         "https://stt.openvoiceos.org/stt",
-        "https://fasterwhisper.ziggyai.online/stt"
+        "https://fasterwhisper.ziggyai.online/stt",
+        "https://stt.smartgic.io/fasterwhisper/stt"
     ]
 
     def __init__(self, config=None):
