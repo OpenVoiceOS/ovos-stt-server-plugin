@@ -5,6 +5,8 @@ import requests
 from ovos_utils.log import LOG
 from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 
+LOG.set_level("ERROR")  # avoid server side logs
+
 
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
