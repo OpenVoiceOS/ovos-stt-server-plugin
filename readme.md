@@ -17,6 +17,13 @@ pip install ovos-stt-plugin-server
  }
 ```
 
+## Public servers
+
+the default public servers run Whisper, but Nemo is also available
+- https://stt.smartgic.io/nemo/stt
+
+**Warning** there are associated risk with using a public server, read my previous blog post [The Trust Factor in Public Servers](https://jarbasal.github.io/blog/2023/10/14/the-trust-factor-in-public-servers.html)
+
 ## Docker
 
 see [google-stt-proxy](https://github.com/OpenVoiceOS/ovos-stt-plugin-chromium/pkgs/container/google-stt-proxy) for an example
