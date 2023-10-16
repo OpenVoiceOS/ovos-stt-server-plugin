@@ -17,6 +17,16 @@ pip install ovos-stt-plugin-server
  }
 ```
 
+## Public servers
+
+public server status page can be found at https://github.com/OpenVoiceOS/status
+
+the default public servers run [Whisper](https://github.com/OpenVoiceOS/ovos-stt-plugin-fasterwhisper), but [Nemo](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo) is also available
+
+- https://stt.smartgic.io/nemo/stt
+
+While there are associated risks with public servers, we value your trust in our products, learn more in Jarbas blog post [The Trust Factor in Public Servers](https://jarbasal.github.io/blog/2023/10/14/the-trust-factor-in-public-servers.html)
+
 ## Docker
 
 see [google-stt-proxy](https://github.com/OpenVoiceOS/ovos-stt-plugin-chromium/pkgs/container/google-stt-proxy) for an example
