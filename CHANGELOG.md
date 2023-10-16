@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a2...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a3...HEAD)
+
+**Merged pull requests:**
+
+- Update readme.md [\#12](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/12) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a3](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a3) (2023-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a2...V0.0.4a3)
 
 **Closed issues:**
 
