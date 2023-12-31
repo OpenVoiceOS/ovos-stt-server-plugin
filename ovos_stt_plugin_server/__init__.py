@@ -21,8 +21,11 @@ class OVOSHTTPServerSTT(STT):
             self.urls = [self.urls]
 
     def execute(self, audio, language=None):
-        urls = self.urls or self.public_servers
-        random.shuffle(urls)
+        if self.urls:
+            urls = self.urls
+        else:
+            urls = self.public_servers
+            random.shuffle(urls)
         for url in urls:
             try:
                 self.response = requests.post(url, data=audio.get_wav_data(),
