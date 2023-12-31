@@ -10,11 +10,46 @@ pip install ovos-stt-plugin-server
 
 ## Configuration
 
+### Used with the [OpenVoiceOS STT Server](https://github.com/OpenVoiceOS/ovos-stt-http-server) to run a local STT server
+
+In this example I am running a local [OpenVoiceOS STT Server](https://github.com/OpenVoiceOS/ovos-stt-http-server) using the [Vosk engine](https://github.com/OpenVoiceOS/ovos-stt-plugin-vosk) to understand Italian. Here we are also using Vosk as the fallback STT plugin.
+
+This is the relevant `mycroft.conf` section 
+```json
+  "lang": "it-it",
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "fallback_module": "ovos-stt-plugin-vosk",
+    "ovos-stt-plugin-server": {
+      "url": "http://0.0.0.0:8080/stt",
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip",
+      "lang": "it-it"
+    },
+    "ovos-stt-plugin-vosk": {
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip",
+     "lang": "it-it"
+    }
+  },
+```
+
+Before to start mycroft, you have to launch the server with, in this case:
+
+```sh
+ovos-stt-server --engine ovos-stt-plugin-vosk
+```
+
+### Used with the [OpenVoiceOS STT Server](https://github.com/OpenVoiceOS/ovos-stt-http-server) on a remote STT server
+This is the relevant `mycroft.conf` section 
 ```json
   "stt": {
     "module": "ovos-stt-plugin-server",
-    "ovos-stt-plugin-server": {"url": "https://0.0.0.0:8080/stt"}
- }
+    "fallback_module": "ovos-stt-plugin-vosk",
+    "ovos-stt-plugin-server": {
+      "url": "https://stt.openvoiceos.com/stt",
+    },
+    "ovos-stt-plugin-vosk": {
+    }
+  },
 ```
 
 ## Public servers
