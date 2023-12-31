@@ -56,60 +56,6 @@ class OVOSHTTPServerSTT(STT):
                 pass
             LOG.error(f"STT request to {url} failed")
 
-
-class OVOSHTTPStreamServerStreamThread(StreamThread):
-    def __init__(self, queue, language, url="https://stt.strongthany.cc/stream"):
-        super().__init__(queue, language)
-        self.url = url
-        self.session = requests.Session()
-
-    def reset_model(self, session_id=None):
-        self.session_id = session_id or str(uuid4())
-        # reset the model for this session
-        response = self.session.post(f"{self.url}/start",
-                                     params={"lang": self.language,
-                                             "uuid": self.session_id},
-                                     verify=self.verify_ssl)
-
-    def handle_audio_stream(self, audio, language):
-        lang = language or self.language
-        response = self.session.post(f"{self.url}/audio",
-                                     params={"lang": lang,
-                                             "uuid": self.session_id},
-                                     data=audio, stream=True,
-                                     verify=self.verify_ssl)
-        self.text = response.json()["transcript"]
-        return self.text
-
-    def finalize(self):
-        """ return final transcription """
-        try:
-            response = self.session.post(f"{self.url}/end",
-                                         params={"lang": self.language,
-                                                 "uuid": self.session_id},
-                                         verify=self.verify_ssl)
-            self.text = response.json()["transcript"] or self.text
-        except:
-            pass
-        return self.text
-
-
-class OVOSHTTPStreamServerSTT(StreamingSTT):
-    """Streaming STT interface for the OVOS-HTTP-STT-Server"""
-
-    def create_streaming_thread(self):
-        url = self.config.get('url') or "https://stt.strongthany.cc/stream"
-        self.queue = Queue()
-
-        stream = OVOSHTTPStreamServerStreamThread(self.queue, self.lang, url)
-        stream.reset_model()
-        return stream
-
-
-
-# public instances
-OVOSHTTPServerSTTConfig = {}
-
 _whisper_lang = {
         "en": "english",
         "zh": "chinese",
