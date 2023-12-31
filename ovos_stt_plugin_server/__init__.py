@@ -2,6 +2,7 @@ from queue import Queue
 from uuid import uuid4
 
 import requests
+import random
 from ovos_utils.log import LOG
 from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 
@@ -9,19 +10,23 @@ from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
     public_servers = [
-        "https://stt.openvoiceos.org/stt",
         "https://fasterwhisper.ziggyai.online/stt",
         "https://stt.smartgic.io/fasterwhisper/stt"
     ]
 
     def __init__(self, config=None):
         super().__init__(config)
-        self.urls = self.config.get("url") or self.config.get("urls") or self.public_servers
+        self.urls = self.config.get("url") or self.config.get("urls") 
         if not isinstance(self.urls, list):
             self.urls = [self.urls]
 
     def execute(self, audio, language=None):
-        for url in self.urls:
+        if self.urls:
+            urls = self.urls
+        else:
+            urls = self.public_servers
+            random.shuffle(urls)
+        for url in urls:
             try:
                 self.response = requests.post(url, data=audio.get_wav_data(),
                                               headers={"Content-Type": "audio/wav"},
