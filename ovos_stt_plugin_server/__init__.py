@@ -9,24 +9,34 @@ from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
-    public_servers = [
-        "https://fasterwhisper.ziggyai.online/stt",
-        "https://stt.smartgic.io/fasterwhisper/stt"
-    ]
 
     def __init__(self, config=None):
         super().__init__(config)
-        self.urls = self.config.get("url") or self.config.get("urls") 
-        if not isinstance(self.urls, list):
-            self.urls = [self.urls]
+
+    @property
+    def public_servers(self):
+        return [
+            "https://fasterwhisper.ziggyai.online/stt",
+            "https://stt.smartgic.io/fasterwhisper/stt"
+        ]
+
+    @property
+    def urls(self):
+        urls = self.config.get("url", self.config.get("urls"))
+        if urls and not isinstance(urls, list):
+            urls = [urls]
+        return urls
 
     def execute(self, audio, language=None):
         if self.urls:
+            LOG.debug(f"Using user defined urls {self.urls}")
             urls = self.urls
         else:
+            LOG.debug(f"Using public servers {self.public_servers}")
             urls = self.public_servers
             random.shuffle(urls)
         for url in urls:
+            LOG.debug(f"chosen url {url}")
             try:
                 self.response = requests.post(url, data=audio.get_wav_data(),
                                               headers={"Content-Type": "audio/wav"},
@@ -189,17 +199,6 @@ _whisper_lang = {
         "jw": "javanese",
         "su": "sundanese",
     }
-
-for code, lang in _whisper_lang.items():
-    OVOSHTTPServerSTTConfig[code] = [
-        {"lang": code,
-         "url": "https://stt.openvoiceos.org/stt",
-         "meta": {
-             "priority": 30,
-             "display_name": f"OVOS FasterWhisper (small)",
-             "offline": False}
-         }
-    ]
 
 if __name__ == "__main__":
     from speech_recognition import Recognizer, AudioFile
