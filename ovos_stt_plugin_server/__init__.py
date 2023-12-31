@@ -68,14 +68,16 @@ class OVOSHTTPStreamServerStreamThread(StreamThread):
         # reset the model for this session
         response = self.session.post(f"{self.url}/start",
                                      params={"lang": self.language,
-                                             "uuid": self.session_id})
+                                             "uuid": self.session_id},
+                                     verify=self.verify_ssl)
 
     def handle_audio_stream(self, audio, language):
         lang = language or self.language
         response = self.session.post(f"{self.url}/audio",
                                      params={"lang": lang,
                                              "uuid": self.session_id},
-                                     data=audio, stream=True)
+                                     data=audio, stream=True,
+                                     verify=self.verify_ssl)
         self.text = response.json()["transcript"]
         return self.text
 
@@ -84,7 +86,8 @@ class OVOSHTTPStreamServerStreamThread(StreamThread):
         try:
             response = self.session.post(f"{self.url}/end",
                                          params={"lang": self.language,
-                                                 "uuid": self.session_id})
+                                                 "uuid": self.session_id},
+                                         verify=self.verify_ssl)
             self.text = response.json()["transcript"] or self.text
         except:
             pass
