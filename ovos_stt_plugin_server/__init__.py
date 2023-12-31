@@ -1,3 +1,4 @@
+from typing import Optional
 from queue import Queue
 from uuid import uuid4
 
@@ -12,6 +13,13 @@ class OVOSHTTPServerSTT(STT):
 
     def __init__(self, config=None):
         super().__init__(config)
+        if not self.verify_ssl:
+            LOG.warning("SSL verification disabled, this is not secure and should"
+                             "only be used for test systems! Please set up a valid certificate!")
+
+    @property
+    def verify_ssl(self) -> bool:
+        return self.config.get("verify_ssl", True)
 
     @property
     def public_servers(self):
@@ -21,7 +29,7 @@ class OVOSHTTPServerSTT(STT):
         ]
 
     @property
-    def urls(self):
+    def urls(self) -> Optional[str]:
         urls = self.config.get("url", self.config.get("urls"))
         if urls and not isinstance(urls, list):
             urls = [urls]
@@ -40,7 +48,8 @@ class OVOSHTTPServerSTT(STT):
             try:
                 self.response = requests.post(url, data=audio.get_wav_data(),
                                               headers={"Content-Type": "audio/wav"},
-                                              params={"lang": language or self.lang})
+                                              params={"lang": language or self.lang},
+                                              verify=self.verify_ssl)
                 if self.response:
                     return self.response.text
             except:
