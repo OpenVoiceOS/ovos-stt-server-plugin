@@ -13,9 +13,17 @@ pip install ovos-stt-plugin-server
 ```json
   "stt": {
     "module": "ovos-stt-plugin-server",
-    "ovos-stt-plugin-server": {"url": "https://0.0.0.0:8080/stt"}
+    "ovos-stt-plugin-server": {"url": "https://0.0.0.0:8080/stt"},
+    "verify_ssl": true
  }
 ```
+
+### Security warning
+
+Please note that while you can set `verify_ssl` to `false` to disable SSL
+verification, this is not recommended and should only be used for testing
+purposes. Consider using a private CA or certificates signed using
+[Let's Encrypt](https://letsencrypt.org/) instead.
 
 ## Public servers
 

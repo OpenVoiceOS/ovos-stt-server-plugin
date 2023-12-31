@@ -1,3 +1,4 @@
+from typing import Optional
 from queue import Queue
 from uuid import uuid4
 
@@ -9,84 +10,51 @@ from ovos_plugin_manager.stt import STT, StreamingSTT, StreamThread
 
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
-    public_servers = [
-        "https://fasterwhisper.ziggyai.online/stt",
-        "https://stt.smartgic.io/fasterwhisper/stt"
-    ]
 
     def __init__(self, config=None):
         super().__init__(config)
-        self.urls = self.config.get("url") or self.config.get("urls") 
-        if not isinstance(self.urls, list):
-            self.urls = [self.urls]
+        if not self.verify_ssl:
+            LOG.warning("SSL verification disabled, this is not secure and should"
+                             "only be used for test systems! Please set up a valid certificate!")
+
+    @property
+    def verify_ssl(self) -> bool:
+        return self.config.get("verify_ssl", True)
+
+    @property
+    def public_servers(self):
+        return [
+            "https://fasterwhisper.ziggyai.online/stt",
+            "https://stt.smartgic.io/fasterwhisper/stt"
+        ]
+
+    @property
+    def urls(self) -> Optional[str]:
+        urls = self.config.get("url", self.config.get("urls"))
+        if urls and not isinstance(urls, list):
+            urls = [urls]
+        return urls
 
     def execute(self, audio, language=None):
         if self.urls:
+            LOG.debug(f"Using user defined urls {self.urls}")
             urls = self.urls
         else:
+            LOG.debug(f"Using public servers {self.public_servers}")
             urls = self.public_servers
             random.shuffle(urls)
         for url in urls:
+            LOG.debug(f"chosen url {url}")
             try:
                 self.response = requests.post(url, data=audio.get_wav_data(),
                                               headers={"Content-Type": "audio/wav"},
-                                              params={"lang": language or self.lang})
+                                              params={"lang": language or self.lang},
+                                              verify=self.verify_ssl)
                 if self.response:
                     return self.response.text
             except:
                 pass
             LOG.error(f"STT request to {url} failed")
-
-
-class OVOSHTTPStreamServerStreamThread(StreamThread):
-    def __init__(self, queue, language, url="https://stt.strongthany.cc/stream"):
-        super().__init__(queue, language)
-        self.url = url
-        self.session = requests.Session()
-
-    def reset_model(self, session_id=None):
-        self.session_id = session_id or str(uuid4())
-        # reset the model for this session
-        response = self.session.post(f"{self.url}/start",
-                                     params={"lang": self.language,
-                                             "uuid": self.session_id})
-
-    def handle_audio_stream(self, audio, language):
-        lang = language or self.language
-        response = self.session.post(f"{self.url}/audio",
-                                     params={"lang": lang,
-                                             "uuid": self.session_id},
-                                     data=audio, stream=True)
-        self.text = response.json()["transcript"]
-        return self.text
-
-    def finalize(self):
-        """ return final transcription """
-        try:
-            response = self.session.post(f"{self.url}/end",
-                                         params={"lang": self.language,
-                                                 "uuid": self.session_id})
-            self.text = response.json()["transcript"] or self.text
-        except:
-            pass
-        return self.text
-
-
-class OVOSHTTPStreamServerSTT(StreamingSTT):
-    """Streaming STT interface for the OVOS-HTTP-STT-Server"""
-
-    def create_streaming_thread(self):
-        url = self.config.get('url') or "https://stt.strongthany.cc/stream"
-        self.queue = Queue()
-
-        stream = OVOSHTTPStreamServerStreamThread(self.queue, self.lang, url)
-        stream.reset_model()
-        return stream
-
-
-
-# public instances
-OVOSHTTPServerSTTConfig = {}
 
 _whisper_lang = {
         "en": "english",
@@ -189,17 +157,6 @@ _whisper_lang = {
         "jw": "javanese",
         "su": "sundanese",
     }
-
-for code, lang in _whisper_lang.items():
-    OVOSHTTPServerSTTConfig[code] = [
-        {"lang": code,
-         "url": "https://stt.openvoiceos.org/stt",
-         "meta": {
-             "priority": 30,
-             "display_name": f"OVOS FasterWhisper (small)",
-             "offline": False}
-         }
-    ]
 
 if __name__ == "__main__":
     from speech_recognition import Recognizer, AudioFile
