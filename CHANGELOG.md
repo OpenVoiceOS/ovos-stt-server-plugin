@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a6...HEAD)
+
+**Fixed bugs:**
+
+- rm streaming plugin [\#17](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/17) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a6](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a6) (2023-12-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a5...V0.0.4a6)
 
 **Merged pull requests:**
 
