@@ -5,8 +5,7 @@ from setuptools import setup
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 PLUGIN_ENTRY_POINT = (
-    'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT',
-    'ovos-stt-plugin-server-streaming = ovos_stt_plugin_server:OVOSHTTPStreamServerSTT'
+    'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT'
 )
 CONFIG_ENTRY_POINT = 'ovos-stt-plugin-server.config = ovos_stt_plugin_server:OVOSHTTPServerSTTConfig'
 
