@@ -48,6 +48,7 @@ class OVOSHTTPServerSTT(STT):
                                          headers={"Content-Type": "audio/wav"},
                                          params={"lang": language or self.lang},
                                          verify=self.verify_ssl)
+                LOG.debug(f"Response={response.status_code}")
                 if response:
                     return response.text
             except Exception as e:
