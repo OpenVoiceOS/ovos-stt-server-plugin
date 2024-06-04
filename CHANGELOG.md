@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a7...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a8...HEAD)
+
+**Merged pull requests:**
+
+- Add optional user-agent config [\#19](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/19) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a8](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a8) (2024-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a7...V0.0.4a8)
 
 **Closed issues:**
 
