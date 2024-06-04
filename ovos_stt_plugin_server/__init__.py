@@ -2,6 +2,7 @@ from typing import Optional, List
 
 import requests
 import random
+from requests.utils import default_user_agent
 from ovos_utils.log import LOG
 from ovos_plugin_manager.stt import STT
 
@@ -18,6 +19,10 @@ class OVOSHTTPServerSTT(STT):
     @property
     def verify_ssl(self) -> bool:
         return self.config.get("verify_ssl", True)
+
+    @property
+    def user_agent(self) -> str:
+        return self.config.get("user_agent") or default_user_agent()
 
     @property
     def public_servers(self):
@@ -45,7 +50,8 @@ class OVOSHTTPServerSTT(STT):
             LOG.debug(f"chosen url {url}")
             try:
                 response = requests.post(url, data=audio.get_wav_data(),
-                                         headers={"Content-Type": "audio/wav"},
+                                         headers={"Content-Type": "audio/wav",
+                                                  "User-Agent": self.user_agent},
                                          params={"lang": language or self.lang},
                                          verify=self.verify_ssl)
                 if not response.ok:
