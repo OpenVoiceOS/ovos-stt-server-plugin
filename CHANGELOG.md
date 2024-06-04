@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a7...HEAD)
+
+**Closed issues:**
+
+- Make TLS verification configurable [\#13](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/issues/13)
+
+**Merged pull requests:**
+
+- Update error logging [\#18](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/18) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a7](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a7) (2024-01-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a6...V0.0.4a7)
 
 **Fixed bugs:**
 
