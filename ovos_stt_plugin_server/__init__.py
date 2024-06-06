@@ -28,7 +28,8 @@ class OVOSHTTPServerSTT(STT):
     def public_servers(self):
         return [
             "https://fasterwhisper.ziggyai.online/stt",
-            "https://stt.smartgic.io/fasterwhisper/stt"
+            "https://stt.smartgic.io/fasterwhisper/stt",
+            "https://whisper.neonaiservices.com/stt"
         ]
 
     @property
