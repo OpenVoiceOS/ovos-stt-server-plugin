@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a8...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a9...HEAD)
+
+**Implemented enhancements:**
+
+- Add neon endpoint to public servers [\#20](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/20) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a9](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.4a9) (2024-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/V0.0.4a8...V0.0.4a9)
 
 **Merged pull requests:**
 
