@@ -12,7 +12,6 @@ CONFIG_ENTRY_POINT = 'ovos-stt-plugin-server.config = ovos_stt_plugin_server:OVO
 
 def get_version():
     """ Find the version of the package"""
-    version = None
     version_file = os.path.join(BASEDIR, 'ovos_stt_plugin_server', 'version.py')
     major, minor, build, alpha = (None, None, None, None)
     with open(version_file) as f:
@@ -54,7 +53,7 @@ def required(requirements_file):
                 if pkg.strip() and not pkg.startswith("#")]
 
 
-with open("readme.md", "r") as f:
+with open(os.path.join(BASEDIR, "README.md"), "r") as f:
     long_description = f.read()
 
 
