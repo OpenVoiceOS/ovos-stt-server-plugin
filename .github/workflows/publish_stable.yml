@@ -10,7 +10,7 @@ jobs:
     secrets: inherit
     with:
       branch: 'master'
-      version_file: 'ovos_phal_plugin_ipgeo/version.py'
+      version_file: 'ovos_stt_plugin_server/version.py'
       setup_py: 'setup.py'
       publish_release: true
 
