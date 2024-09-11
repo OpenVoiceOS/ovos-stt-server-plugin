@@ -1,21 +1,101 @@
 # Changelog
 
-## [V0.0.3a2](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/tree/V0.0.3a2) (2023-05-04)
+## [0.0.5a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.0.5a1) (2024-09-11)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/compare/028fed89ef13dee47f29e421a814a9742723b01f...V0.0.3a2)
-
-**Implemented enhancements:**
-
-- feat/plugin\_configs [\#1](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/1) ([JarbasAl](https://github.com/JarbasAl))
-
-**Fixed bugs:**
-
-- renamed  session\_id to lang as apparently it was supposed to be [\#4](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/4) ([denics](https://github.com/denics))
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a10...0.0.5a1)
 
 **Merged pull requests:**
 
-- automations [\#7](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/7) ([emphasize](https://github.com/emphasize))
-- move ui data to "meta" [\#3](https://github.com/OpenVoiceOS/ovos-stt-plugin-server/pull/3) ([JarbasAl](https://github.com/JarbasAl))
+- feat:semver [\#22](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/22) ([JarbasAl](https://github.com/JarbasAl))
+- feat:semver [\#21](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/21) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a10](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a10) (2024-06-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a9...V0.0.4a10)
+
+**Implemented enhancements:**
+
+- Add neon endpoint to public servers [\#20](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/20) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a9](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a9) (2024-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a8...V0.0.4a9)
+
+**Merged pull requests:**
+
+- Add optional user-agent config [\#19](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/19) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a8](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a8) (2024-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a7...V0.0.4a8)
+
+**Closed issues:**
+
+- Make TLS verification configurable [\#13](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/issues/13)
+
+**Merged pull requests:**
+
+- Update error logging [\#18](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/18) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a7](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a7) (2024-01-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a6...V0.0.4a7)
+
+**Fixed bugs:**
+
+- rm streaming plugin [\#17](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/17) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a6](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a6) (2023-12-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a5...V0.0.4a6)
+
+**Merged pull requests:**
+
+- fixed public servers not working [\#16](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/16) ([builderjer](https://github.com/builderjer))
+
+## [V0.0.4a5](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a5) (2023-12-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a4...V0.0.4a5)
+
+**Implemented enhancements:**
+
+- update servers [\#15](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/15) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a4](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a4) (2023-10-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a3...V0.0.4a4)
+
+**Merged pull requests:**
+
+- Update readme.md [\#12](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/12) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.4a3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a3) (2023-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a2...V0.0.4a3)
+
+**Closed issues:**
+
+- first default server is down [\#10](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/issues/10)
+
+**Merged pull requests:**
+
+- Add Smart'Gic STT public server [\#11](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/11) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.4a2](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a2) (2023-06-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.4a1...V0.0.4a2)
+
+**Implemented enhancements:**
+
+- added ziggyai public server [\#9](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/9) ([builderjer](https://github.com/builderjer))
+
+## [V0.0.4a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.4a1) (2023-05-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.3...V0.0.4a1)
+
+**Implemented enhancements:**
+
+- update public servers [\#8](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/8) ([JarbasAl](https://github.com/JarbasAl))
 
 
 

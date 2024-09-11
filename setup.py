@@ -5,15 +5,13 @@ from setuptools import setup
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 PLUGIN_ENTRY_POINT = (
-    'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT',
-    'ovos-stt-plugin-server-streaming = ovos_stt_plugin_server:OVOSHTTPStreamServerSTT'
+    'ovos-stt-plugin-server = ovos_stt_plugin_server:OVOSHTTPServerSTT'
 )
 CONFIG_ENTRY_POINT = 'ovos-stt-plugin-server.config = ovos_stt_plugin_server:OVOSHTTPServerSTTConfig'
 
 
 def get_version():
     """ Find the version of the package"""
-    version = None
     version_file = os.path.join(BASEDIR, 'ovos_stt_plugin_server', 'version.py')
     major, minor, build, alpha = (None, None, None, None)
     with open(version_file) as f:
@@ -55,7 +53,7 @@ def required(requirements_file):
                 if pkg.strip() and not pkg.startswith("#")]
 
 
-with open("readme.md", "r") as f:
+with open(os.path.join(BASEDIR, "README.md"), "r") as f:
     long_description = f.read()
 
 
