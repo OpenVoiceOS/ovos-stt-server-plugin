@@ -29,7 +29,7 @@ class OVOSHTTPServerSTT(STT):
         return [
             "https://fasterwhisper.ziggyai.online/stt",
             "https://stt.smartgic.io/fasterwhisper/stt",
-            "https://whisper.neonaiservices.com/stt"
+            #"https://whisper.neonaiservices.com/stt"  # TODO -restore once it moves to whisper-turbo
         ]
 
     @property
