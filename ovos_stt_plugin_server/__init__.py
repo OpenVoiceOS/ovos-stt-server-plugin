@@ -1,10 +1,72 @@
-from typing import Optional, List
+import random
+import time
+from typing import Optional, List, Tuple
 
 import requests
-import random
-from requests.utils import default_user_agent
-from ovos_utils.log import LOG
+from ovos_config import Configuration
 from ovos_plugin_manager.stt import STT
+from ovos_plugin_manager.templates.transformers import AudioLanguageDetector
+from ovos_utils.log import LOG
+from requests.utils import default_user_agent
+from speech_recognition import AudioData
+
+
+class OVOSServerLangClassifier(AudioLanguageDetector):
+    def __init__(self, config=None):
+        super().__init__("ovos-audio-lang-server-plugin", 10, config)
+
+    @property
+    def verify_ssl(self) -> bool:
+        return self.config.get("verify_ssl", True)
+
+    @property
+    def user_agent(self) -> str:
+        return self.config.get("user_agent") or default_user_agent()
+
+    @property
+    def urls(self) -> Optional[List[str]]:
+        urls = self.config.get("urls") or []
+        if urls and not isinstance(urls, list):
+            urls = [urls]
+        return urls
+
+    @property
+    def public_servers(self):
+        return ["http://127.0.0.1:8080/lang_detect"]
+
+    def detect(self, audio_data: bytes, valid_langs=None) -> Tuple[str, float]:
+        valid_langs = valid_langs or self.valid_langs
+        if len(valid_langs) == 1:
+            return valid_langs[0], 1.0
+        if isinstance(audio_data, AudioData):
+            audio_data = audio_data.get_wav_data()
+        if self.urls:
+            LOG.debug(f"Using user defined urls {self.urls}")
+            urls = self.urls
+        else:
+            LOG.debug(f"Using public servers {self.public_servers}")
+            urls = self.public_servers
+            random.shuffle(urls)
+
+        for url in urls:
+            LOG.debug(f"chosen url {url}")
+            try:
+                response = requests.post(url, data=audio_data,
+                                         headers={"Content-Type": "audio/wav",
+                                                  "User-Agent": self.user_agent},
+                                         params={"valid_langs": ",".join(valid_langs)},
+                                         timeout=self.config.get("timeout", 5),
+                                         verify=self.verify_ssl)
+                if not response.ok:
+                    LOG.error(f"{response.status_code} response from {url}: "
+                              f"{response.content}")
+                else:
+                    data = response.json()
+                    return data["lang"], data["conf"]
+            except Exception as e:
+                LOG.exception(e)
+            LOG.error(f"Lang detect request to {url} failed")
+        return Configuration().get("lang"), 0.0
 
 
 class OVOSHTTPServerSTT(STT):
@@ -15,6 +77,7 @@ class OVOSHTTPServerSTT(STT):
         if not self.verify_ssl:
             LOG.warning("SSL verification disabled, this is not secure and should"
                         "only be used for test systems! Please set up a valid certificate!")
+        self._detector = OVOSServerLangClassifier()
 
     @property
     def verify_ssl(self) -> bool:
@@ -54,6 +117,7 @@ class OVOSHTTPServerSTT(STT):
                                          headers={"Content-Type": "audio/wav",
                                                   "User-Agent": self.user_agent},
                                          params={"lang": language or self.lang},
+                                         timeout=self.config.get("timeout", 5),
                                          verify=self.verify_ssl)
                 if not response.ok:
                     LOG.error(f"{response.status_code} response from {url}: "
@@ -171,11 +235,22 @@ if __name__ == "__main__":
     from speech_recognition import Recognizer, AudioFile
 
     engine = OVOSHTTPServerSTT()
+    d = OVOSServerLangClassifier()
 
     # inference
     jfk = "/home/miro/PycharmProjects/ovos-stt-plugin-fasterwhisper/jfk.wav"
+    ca = "/home/miro/PycharmProjects/ovos-stt-plugin-vosk/example.wav"
     with AudioFile(jfk) as source:
         audio = Recognizer().record(source)
 
-    pred = engine.execute(audio)
+    s = time.monotonic()
+    pred = d.detect(audio, valid_langs=["en", "es", "ca"])
+    e = time.monotonic() - s
     print(pred)
+    print(f"took {e} seconds")
+
+    s = time.monotonic()
+    pred = engine.execute(audio, language="ca")
+    e = time.monotonic() - s
+    print(pred)
+    print(f"took {e} seconds")
