@@ -32,7 +32,7 @@ class OVOSServerLangClassifier(AudioLanguageDetector):
 
     @property
     def public_servers(self):
-        return ["http://127.0.0.1:8080/lang_detect"]
+        return ["https://stt.smartgic.io/fasterwhisper/lang_detect"]
 
     def detect(self, audio_data: bytes, valid_langs=None) -> Tuple[str, float]:
         valid_langs = valid_langs or self.valid_langs
