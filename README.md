@@ -14,7 +14,7 @@ pip install ovos-stt-plugin-server
   "stt": {
     "module": "ovos-stt-plugin-server",
     "ovos-stt-plugin-server": {
-      "url": "https://0.0.0.0:8080/stt",
+      "urls": ["https://0.0.0.0:8080/stt"],
       "verify_ssl": true
     },
  }
@@ -26,7 +26,7 @@ for audio language detection
   "listener": {
     "audio_transformers": {
         "ovos-audio-lang-server-plugin": {
-          "url": "https://0.0.0.0:8080/lang_detect",
+          "urls": ["https://0.0.0.0:8080/lang_detect"],
           "verify_ssl": true
         }
     }

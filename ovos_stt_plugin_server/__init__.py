@@ -90,7 +90,7 @@ class OVOSHTTPServerSTT(STT):
     @property
     def public_servers(self):
         return [
-            "https://fasterwhisper.ziggyai.online/stt",
+            "https://whisper.tigregotico.pt/stt",
             "https://stt.smartgic.io/fasterwhisper/stt",
             #"https://whisper.neonaiservices.com/stt"  # TODO -restore once it moves to whisper-turbo
         ]
