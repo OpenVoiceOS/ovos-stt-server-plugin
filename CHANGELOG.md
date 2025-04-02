@@ -1,16 +1,16 @@
 # Changelog
 
-## [0.1.0a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.0a1) (2024-11-25)
+## [0.1.1a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.1a1) (2025-04-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.0.6...0.1.0a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.1.0...0.1.1a1)
 
 **Merged pull requests:**
 
-- feat:lang detect servers [\#27](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/27) ([JarbasAl](https://github.com/JarbasAl))
+- Switch STT public servers [\#30](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/30) ([goldyfruit](https://github.com/goldyfruit))
 
-## [V0.0.6](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.0.6) (2024-11-06)
+## [V0.1.0](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.1.0) (2024-11-25)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.0.6...V0.0.6)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.0...V0.1.0)
 
 
 
