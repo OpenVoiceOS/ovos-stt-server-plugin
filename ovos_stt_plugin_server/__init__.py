@@ -6,6 +6,7 @@ import requests
 from ovos_config import Configuration
 from ovos_plugin_manager.stt import STT
 from ovos_plugin_manager.templates.transformers import AudioLanguageDetector
+from ovos_utils import classproperty
 from ovos_utils.log import LOG
 from requests.utils import default_user_agent
 from speech_recognition import AudioData
@@ -68,6 +69,10 @@ class OVOSServerLangClassifier(AudioLanguageDetector):
             LOG.error(f"Lang detect request to {url} failed")
         return Configuration().get("lang"), 0.0
 
+    @classproperty
+    def available_languages(cls) -> set:
+        return set()  # TODO
+
 
 class OVOSHTTPServerSTT(STT):
     """STT interface for the OVOS-HTTP-STT-Server"""
@@ -92,7 +97,7 @@ class OVOSHTTPServerSTT(STT):
         return [
             "https://whisper.tigregotico.pt/stt",
             "https://stt.smartgic.io/fasterwhisper/stt",
-            #"https://whisper.neonaiservices.com/stt"  # TODO -restore once it moves to whisper-turbo
+            # "https://whisper.neonaiservices.com/stt"  # TODO -restore once it moves to whisper-turbo
         ]
 
     @property
