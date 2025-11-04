@@ -57,7 +57,7 @@ with open(os.path.join(BASEDIR, "README.md"), "r") as f:
 
 
 setup(
-    name='ovos-stt-plugin-server',
+    name='ovos_stt_plugin_server',
     version=get_version(),
     description='ovos stt server plugin for mycroft',
     long_description=long_description,
