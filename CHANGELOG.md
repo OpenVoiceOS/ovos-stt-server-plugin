@@ -1,20 +1,16 @@
 # Changelog
 
-## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.3a1) (2025-11-04)
+## [0.1.4a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a1) (2025-12-18)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.1.2...0.1.3a1)
-
-**Closed issues:**
-
-- STT timeout [\#24](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/issues/24)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.1.3...0.1.4a1)
 
 **Merged pull requests:**
 
-- Update ovos-plugin-manager version range [\#34](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/34) ([JarbasAl](https://github.com/JarbasAl))
+- chore: Configure Renovate [\#36](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/36) ([renovate[bot]](https://github.com/apps/renovate))
 
-## [V0.1.2](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.1.2) (2025-06-08)
+## [V0.1.3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.1.3) (2025-11-04)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.2...V0.1.2)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.3...V0.1.3)
 
 
 
