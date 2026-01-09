@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4a3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a3) (2026-01-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a2...0.1.4a3)
+
+**Merged pull requests:**
+
+- refactor: modernize/drop speech\_recognition [\#44](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/44) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.4a2](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a2) (2025-12-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a1...0.1.4a2)
