@@ -74,16 +74,10 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'Topic :: Text Processing :: Linguistic',
         'License :: OSI Approved :: Apache Software License',
-
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
     ],
     keywords='mycroft OpenVoiceOS OVOS plugin stt',
-    entry_points={'mycroft.plugin.stt': PLUGIN_ENTRY_POINT,
-                  'mycroft.plugin.stt.config': CONFIG_ENTRY_POINT,
-                  'neon.plugin.audio': LANG_PLUGIN_ENTRY_POINT}
+    entry_points={'opm.stt': PLUGIN_ENTRY_POINT,
+                  'opm.stt.config': CONFIG_ENTRY_POINT,
+                  'opm.transformer.audio': LANG_PLUGIN_ENTRY_POINT}
 )
