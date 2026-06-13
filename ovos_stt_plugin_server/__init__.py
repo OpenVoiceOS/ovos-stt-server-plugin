@@ -318,6 +318,9 @@ _whisper_lang = {
     "su": "sundanese",
 }
 
+OVOSHTTPServerSTTConfig = {}
+
+
 if __name__ == "__main__":
 
     engine = OVOSHTTPServerSTT()
