@@ -107,31 +107,113 @@ class OVOSHTTPServerSTT(STT):
             urls = [urls]
         return urls
 
+    @property
+    def server_type(self) -> str:
+        """Which server API to speak to.
+
+        ``ovos`` (default) talks to a native ovos-stt-http-server. Any other
+        value turns this plugin into an adapter for a third-party STT API so it
+        can target any compatible server:
+        - ``openai``: OpenAI ``/v1/audio/transcriptions`` (also covers Groq,
+          whisper.cpp server and LocalAI via a custom ``url``).
+        - ``deepgram``: Deepgram ``/v1/listen``.
+        """
+        return self.config.get("server_type", "ovos")
+
+    @property
+    def api_key(self) -> Optional[str]:
+        """API key for vendor server types (Bearer / Token). Optional."""
+        return self.config.get("api_key")
+
     def execute(self, audio: AudioData, language: Optional[str]=None):
         if self.urls:
             LOG.debug(f"Using user defined urls {self.urls}")
             urls = self.urls
-        else:
+        elif self.server_type == "ovos":
             LOG.debug(f"Using public servers {self.public_servers}")
             urls = self.public_servers
             random.shuffle(urls)
+        else:
+            raise RuntimeError(
+                f"server_type={self.server_type!r} requires an explicit 'url'")
+        lang = language or self.lang
         for url in urls:
             LOG.debug(f"chosen url {url}")
             try:
-                response = requests.post(url, data=audio.get_wav_data(),
-                                         headers={"Content-Type": "audio/wav",
-                                                  "User-Agent": self.user_agent},
-                                         params={"lang": language or self.lang},
-                                         timeout=self.config.get("timeout", 5),
-                                         verify=self.verify_ssl)
-                if not response.ok:
-                    LOG.error(f"{response.status_code} response from {url}: "
-                              f"{response.content}")
+                if self.server_type == "ovos":
+                    text = self._transcribe_ovos(url, audio, lang)
+                elif self.server_type == "openai":
+                    text = self._transcribe_openai(url, audio, lang)
+                elif self.server_type == "deepgram":
+                    text = self._transcribe_deepgram(url, audio, lang)
                 else:
-                    return response.text
+                    raise RuntimeError(f"unknown server_type {self.server_type!r}")
+                if text is not None:
+                    return text
             except Exception as e:
                 LOG.exception(e)
             LOG.error(f"STT request to {url} failed")
+
+    def _transcribe_ovos(self, url: str, audio: AudioData, lang: str) -> Optional[str]:
+        response = requests.post(url, data=audio.get_wav_data(),
+                                 headers={"Content-Type": "audio/wav",
+                                          "User-Agent": self.user_agent},
+                                 params={"lang": lang},
+                                 timeout=self.config.get("timeout", 5),
+                                 verify=self.verify_ssl)
+        if not response.ok:
+            LOG.error(f"{response.status_code} response from {url}: {response.content}")
+            return None
+        return response.text
+
+    def _transcribe_openai(self, url: str, audio: AudioData, lang: str) -> Optional[str]:
+        """OpenAI-compatible POST /v1/audio/transcriptions (multipart)."""
+        endpoint = url.rstrip("/")
+        if not endpoint.endswith("/v1"):
+            endpoint += "/v1"
+        endpoint += "/audio/transcriptions"
+        headers = {"User-Agent": self.user_agent}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        data = {"model": self.config.get("model", "whisper-1")}
+        if lang and lang != "auto":
+            data["language"] = lang.split("-")[0]
+        response = requests.post(endpoint,
+                                 files={"file": ("audio.wav", audio.get_wav_data(), "audio/wav")},
+                                 data=data, headers=headers,
+                                 timeout=self.config.get("timeout", 5),
+                                 verify=self.verify_ssl)
+        if not response.ok:
+            LOG.error(f"{response.status_code} response from {endpoint}: {response.content}")
+            return None
+        try:
+            return response.json().get("text", "")
+        except Exception:
+            return response.text
+
+    def _transcribe_deepgram(self, url: str, audio: AudioData, lang: str) -> Optional[str]:
+        """Deepgram POST /v1/listen (raw audio body)."""
+        endpoint = url.rstrip("/")
+        if not endpoint.endswith("/listen"):
+            endpoint += "/v1/listen"
+        headers = {"Content-Type": "audio/wav", "User-Agent": self.user_agent}
+        if self.api_key:
+            headers["Authorization"] = f"Token {self.api_key}"
+        params = {}
+        if lang and lang != "auto":
+            params["language"] = lang
+        response = requests.post(endpoint, data=audio.get_wav_data(),
+                                 headers=headers, params=params,
+                                 timeout=self.config.get("timeout", 5),
+                                 verify=self.verify_ssl)
+        if not response.ok:
+            LOG.error(f"{response.status_code} response from {endpoint}: {response.content}")
+            return None
+        try:
+            return response.json()["results"]["channels"][0]["alternatives"][0]["transcript"]
+        except Exception:
+            LOG.error(f"unexpected Deepgram response from {endpoint}: {response.text}")
+            return None
 
 
 _whisper_lang = {
