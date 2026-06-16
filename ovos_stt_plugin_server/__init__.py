@@ -9,7 +9,7 @@ from ovos_plugin_manager.templates.transformers import AudioLanguageDetector
 from ovos_utils import classproperty
 from ovos_utils.log import LOG
 from requests.utils import default_user_agent
-from speech_recognition import AudioData
+from ovos_plugin_manager.utils.audio import AudioData, AudioFile
 
 
 class OVOSServerLangClassifier(AudioLanguageDetector):
@@ -107,7 +107,7 @@ class OVOSHTTPServerSTT(STT):
             urls = [urls]
         return urls
 
-    def execute(self, audio, language=None):
+    def execute(self, audio: AudioData, language: Optional[str]=None):
         if self.urls:
             LOG.debug(f"Using user defined urls {self.urls}")
             urls = self.urls
@@ -237,7 +237,6 @@ _whisper_lang = {
 }
 
 if __name__ == "__main__":
-    from speech_recognition import Recognizer, AudioFile
 
     engine = OVOSHTTPServerSTT()
     d = OVOSServerLangClassifier()
@@ -246,7 +245,7 @@ if __name__ == "__main__":
     jfk = "/home/miro/PycharmProjects/ovos-stt-plugin-fasterwhisper/jfk.wav"
     ca = "/home/miro/PycharmProjects/ovos-stt-plugin-vosk/example.wav"
     with AudioFile(jfk) as source:
-        audio = Recognizer().record(source)
+        audio = source.read()
 
     s = time.monotonic()
     pred = d.detect(audio, valid_langs=["en", "es", "ca"])

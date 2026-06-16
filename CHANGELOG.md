@@ -1,20 +1,40 @@
 # Changelog
 
-## [0.1.3a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.3a1) (2025-11-04)
+## [0.1.5a3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a3) (2026-06-16)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.1.2...0.1.3a1)
-
-**Closed issues:**
-
-- STT timeout [\#24](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/issues/24)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a3...0.1.5a3)
 
 **Merged pull requests:**
 
-- Update ovos-plugin-manager version range [\#34](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/34) ([JarbasAl](https://github.com/JarbasAl))
+- chore: add missing shared CI workflows [\#48](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/48) ([JarbasAl](https://github.com/JarbasAl))
 
-## [V0.1.2](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.1.2) (2025-06-08)
+## [0.1.4a3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a3) (2026-01-09)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.2...V0.1.2)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a2...0.1.4a3)
+
+**Merged pull requests:**
+
+- refactor: modernize/drop speech\_recognition [\#44](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/44) ([JarbasAl](https://github.com/JarbasAl))
+
+## [0.1.4a2](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a2) (2025-12-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a1...0.1.4a2)
+
+**Merged pull requests:**
+
+- chore\(deps\): update dependency python to 3.14 [\#37](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/37) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [0.1.4a1](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.4a1) (2025-12-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/V0.1.3...0.1.4a1)
+
+**Merged pull requests:**
+
+- chore: Configure Renovate [\#36](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/36) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [V0.1.3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/V0.1.3) (2025-11-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.3...V0.1.3)
 
 
 
