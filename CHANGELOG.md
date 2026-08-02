@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5a4](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a4) (2026-08-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.5a3...0.1.5a4)
+
+**Merged pull requests:**
+
+- docs: lead with self-hosting; retire dead public server [\#50](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/50) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.5a3](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a3) (2026-06-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.4a3...0.1.5a3)
