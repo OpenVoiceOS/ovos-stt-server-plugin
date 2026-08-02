@@ -78,6 +78,3 @@ If you set no `urls`, the plugin falls back to public servers.
 >
 > For anything beyond trying it out, [self-host](#self-hosting-recommended).
 
-Status page: https://github.com/TigreGotico/public-servers
-
-While there are associated risks with public servers, we value your trust in our products, learn more in Jarbas blog post [The Trust Factor in Public Servers](https://jarbasal.github.io/blog/2023/10/14/the-trust-factor-in-public-servers.html)
