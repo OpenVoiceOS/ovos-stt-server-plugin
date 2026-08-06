@@ -33,6 +33,34 @@ for audio language detection
   }
 ```
 
+### Universal adapter (`server_type`)
+
+By default the plugin talks to a native `ovos-stt-http-server`
+(`server_type: "ovos"`). Set `server_type` to target any other compatible STT
+API — the plugin becomes a universal adapter and can point at a vendor service
+or any self-hosted OpenAI-compatible server:
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "ovos-stt-plugin-server": {
+      "server_type": "openai",
+      "url": "https://api.openai.com",
+      "api_key": "sk-...",
+      "model": "whisper-1"
+    }
+ }
+```
+
+| `server_type` | Endpoint used | `url` example | Notes |
+|---|---|---|---|
+| `ovos` (default) | `/stt` | `https://0.0.0.0:8080/stt` | native ovos-stt-http-server |
+| `openai` | `/v1/audio/transcriptions` | `https://api.openai.com` | also covers **Groq** (`url: https://api.groq.com/openai`), self-hosted **whisper.cpp** server, **LocalAI** |
+| `deepgram` | `/v1/listen` | `https://api.deepgram.com` | |
+
+`api_key` is sent as `Authorization: Bearer` (openai) or `Authorization: Token`
+(deepgram). For vendor server types an explicit `url` is required.
+
 ### Security warning
 
 Please note that while you can set `verify_ssl` to `false` to disable SSL
