@@ -64,6 +64,51 @@ server can serve all of them. Point the plugin at it:
   }
 ```
 
+The server runs one engine at a time, and you choose the engine with
+`--engine`. This example serves Italian with the
+[Vosk engine](https://github.com/OpenVoiceOS/ovos-stt-plugin-vosk):
+
+```bash
+pip install ovos-stt-http-server ovos-stt-plugin-vosk
+ovos-stt-server --engine ovos-stt-plugin-vosk
+```
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "ovos-stt-plugin-server": {
+      "urls": ["http://0.0.0.0:8080/stt"]
+    },
+    "ovos-stt-plugin-vosk": {
+      "lang": "it-IT",
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip"
+    }
+  }
+```
+
+In this example the server and the listener run on the same machine, so one
+`mycroft.conf` carries the whole block: the server reads the
+`ovos-stt-plugin-vosk` section, and the listener reads the
+`ovos-stt-plugin-server` section. If you move the server to another machine,
+that machine keeps the `ovos-stt-plugin-vosk` section, and the listener keeps
+only the `ovos-stt-plugin-server` section.
+
+When the server is down, the listener can use a local STT plugin as a
+fallback. Set `fallback_module` and give that plugin its own config:
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "fallback_module": "ovos-stt-plugin-vosk",
+    "ovos-stt-plugin-server": {
+      "urls": ["https://your-server.example/stt"]
+    },
+    "ovos-stt-plugin-vosk": {
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip"
+    }
+  }
+```
+
 ## Public servers
 
 If you set no `urls`, the plugin falls back to public servers.
