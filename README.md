@@ -40,11 +40,86 @@ verification, this is not recommended and should only be used for testing
 purposes. Consider using a private CA or certificates signed using
 [Let's Encrypt](https://letsencrypt.org/) instead.
 
+## Self-hosting (recommended)
+
+Run your own server. It keeps your audio on your own hardware, it does not
+depend on somebody else's uptime, and you choose the model.
+
+```bash
+pip install ovos-stt-http-server ovos-stt-plugin-onnx-asr
+ovos-stt-server --engine ovos-stt-plugin-onnx-asr
+```
+
+[ovos-stt-plugin-onnx-asr](https://github.com/OpenVoiceOS/ovos-stt-plugin-onnx-asr)
+is the recommended engine: it runs ONNX models on CPU, ships a best-model-per-language
+registry covering ~90 languages, and loads a model per request language, so one
+server can serve all of them. Point the plugin at it:
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "ovos-stt-plugin-server": {
+      "urls": ["https://your-server.example/stt"]
+    }
+  }
+```
+
+The server runs one engine at a time, and you choose the engine with
+`--engine`. This example serves Italian with the
+[Vosk engine](https://github.com/OpenVoiceOS/ovos-stt-plugin-vosk):
+
+```bash
+pip install ovos-stt-http-server ovos-stt-plugin-vosk
+ovos-stt-server --engine ovos-stt-plugin-vosk
+```
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "ovos-stt-plugin-server": {
+      "urls": ["http://0.0.0.0:8080/stt"]
+    },
+    "ovos-stt-plugin-vosk": {
+      "lang": "it-IT",
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip"
+    }
+  }
+```
+
+In this example the server and the listener run on the same machine, so one
+`mycroft.conf` carries the whole block: the server reads the
+`ovos-stt-plugin-vosk` section, and the listener reads the
+`ovos-stt-plugin-server` section. If you move the server to another machine,
+that machine keeps the `ovos-stt-plugin-vosk` section, and the listener keeps
+only the `ovos-stt-plugin-server` section.
+
+When the server is down, the listener can use a local STT plugin as a
+fallback. Set `fallback_module` and give that plugin its own config:
+
+```json
+  "stt": {
+    "module": "ovos-stt-plugin-server",
+    "fallback_module": "ovos-stt-plugin-vosk",
+    "ovos-stt-plugin-server": {
+      "urls": ["https://your-server.example/stt"]
+    },
+    "ovos-stt-plugin-vosk": {
+      "model": "https://alphacephei.com/vosk/models/vosk-model-small-it-0.22.zip"
+    }
+  }
+```
+
 ## Public servers
 
-public server status page can be found at https://github.com/OpenVoiceOS/status
+If you set no `urls`, the plugin falls back to public servers.
 
-the default public servers run [Whisper](https://github.com/OpenVoiceOS/ovos-stt-plugin-fasterwhisper)
-
-While there are associated risks with public servers, we value your trust in our products, learn more in Jarbas blog post [The Trust Factor in Public Servers](https://jarbasal.github.io/blog/2023/10/14/the-trust-factor-in-public-servers.html)
+> **These are a community courtesy, not a service.** They exist so you can try
+> OVOS without setting anything up first. They are provided on a best-effort
+> basis with **no guarantees** of uptime, latency, accuracy, privacy, or
+> continued existence, and they can change or disappear without notice. They
+> are meant for demos, evaluation and onboarding — **not for production, and
+> not for anything you would not want a third party to receive**. Audio you
+> send is processed on hardware you do not control.
+>
+> For anything beyond trying it out, [self-host](#self-hosting-recommended).
 
