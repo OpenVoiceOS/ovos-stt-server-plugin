@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5a5](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a5) (2026-09-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.5a4...0.1.5a5)
+
+**Merged pull requests:**
+
+- docs: port README examples from \#5 onto the restructured README [\#52](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/52) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.1.5a4](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a4) (2026-08-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.5a3...0.1.5a4)
