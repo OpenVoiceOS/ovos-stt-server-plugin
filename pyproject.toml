@@ -11,6 +11,7 @@ license = "Apache-2.0"
 authors = [
     { name = "JarbasAi", email = "jarbasai@mailfence.com" },
 ]
+requires-python = ">=3.10"
 keywords = ["mycroft", "OpenVoiceOS", "OVOS", "plugin", "stt"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -19,7 +20,11 @@ classifiers = [
 dependencies = [
     "ovos-plugin-manager>=2.1.1,<3.0.0",
     "ovos-utils>=0.8.4,<1.0.0",
+    "requests",
 ]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
 
 [project.urls]
 Homepage = "https://github.com/OpenVoiceOS/ovos-stt-server-plugin"
@@ -39,3 +44,7 @@ version = { attr = "ovos_stt_plugin_server.version.__version__" }
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["ovos_stt_plugin_server*"]
+
+[tool.coverage.run]
+source = ["ovos_stt_plugin_server"]
+omit = ["tests/*"]
