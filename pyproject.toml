@@ -21,6 +21,12 @@ dependencies = [
     "ovos-utils>=0.8.4,<1.0.0",
 ]
 
+[project.optional-dependencies]
+# The shared build-tests workflow installs this extra before it runs test_path.
+test = [
+    "pytest",
+]
+
 [project.urls]
 Homepage = "https://github.com/OpenVoiceOS/ovos-stt-server-plugin"
 
