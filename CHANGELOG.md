@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5a6](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a6) (2026-10-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.5a5...0.1.5a6)
+
+**Merged pull requests:**
+
+- docs: install the onnx-asr engine with its \[cpu\] extra [\#54](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/pull/54) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.1.5a5](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/tree/0.1.5a5) (2026-09-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-server-plugin/compare/0.1.5a4...0.1.5a5)
