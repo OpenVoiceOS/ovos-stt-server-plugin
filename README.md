@@ -46,14 +46,21 @@ Run your own server. It keeps your audio on your own hardware, it does not
 depend on somebody else's uptime, and you choose the model.
 
 ```bash
-pip install ovos-stt-http-server ovos-stt-plugin-onnx-asr
+pip install ovos-stt-http-server ovos-stt-plugin-onnx-asr[cpu]
 ovos-stt-server --engine ovos-stt-plugin-onnx-asr
 ```
 
 [ovos-stt-plugin-onnx-asr](https://github.com/OpenVoiceOS/ovos-stt-plugin-onnx-asr)
 is the recommended engine: it runs ONNX models on CPU, ships a best-model-per-language
 registry covering ~90 languages, and loads a model per request language, so one
-server can serve all of them. Point the plugin at it:
+server can serve all of them.
+
+The `[cpu]` extra installs the CPU ONNX runtime. If the box has a supported
+GPU, install `[gpu]` instead of `[cpu]`, not in addition: pip does not remove
+the CPU runtime when you add the GPU one, and a venv with both installed is
+not a configuration we test.
+
+Point the plugin at it:
 
 ```json
   "stt": {
