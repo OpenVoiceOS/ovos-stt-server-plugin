@@ -1,6 +1,6 @@
 import random
 import time
-from typing import Optional, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 from ovos_config import Configuration
@@ -235,6 +235,20 @@ _whisper_lang = {
     "jw": "javanese",
     "su": "sundanese",
 }
+
+# The `opm.stt.config` entry point this package declares resolves here. OPM
+# reads it to answer "which configurations does this plugin offer", through
+# `get_stt_configs()` and `get_stt_module_configs()`. This server speaks
+# whatever the deployment behind its URL speaks, so there is no static list to
+# advertise, and an empty mapping is the honest answer: no preset
+# configurations, rather than none that can be read.
+#
+# It has to exist all the same. The entry point named this object before it was
+# ever defined, so `find_plugins(PluginConfigTypes.STT)` returned nothing and
+# `get_stt_module_configs("ovos-stt-plugin-server")` raised
+# `AttributeError: 'NoneType' object has no attribute 'items'`, because OPM
+# calls `.items()` on whatever the entry point loads.
+OVOSHTTPServerSTTConfig: Dict[str, List[Dict[str, Any]]] = {}
 
 if __name__ == "__main__":
 
